@@ -26,7 +26,6 @@ class _FeedScreenState extends State<FeedScreen> {
   void initState() {
     super.initState();
     feedViewModel.loadVideo(0);
-    feedViewModel.loadVideo(1);
   }
 
   @override

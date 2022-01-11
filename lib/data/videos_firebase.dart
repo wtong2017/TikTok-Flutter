@@ -10,12 +10,13 @@ import 'package:path/path.dart';
 
 class VideosAPI {
   List<Video> listVideos = <Video>[];
+  late Future _initDone;
 
   VideosAPI() {
-    load();
+    _initDone = load();
   }
 
-  void load() async {
+  Future load() async {
     listVideos = await getVideoList();
     print(listVideos);
   }
@@ -64,4 +65,6 @@ class VideosAPI {
       return false;
     }
   }
+
+  Future get initDone => _initDone;
 }
