@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tiktok_flutter/data/video.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:tiktok_flutter/screens/auth_viewmodel.dart';
 import 'package:tiktok_flutter/screens/feed_viewmodel.dart';
 
 class MetadataScreen extends StatelessWidget {
@@ -14,6 +15,8 @@ class MetadataScreen extends StatelessWidget {
   late Video videoData;
   final _formKey = GlobalKey<FormBuilderState>();
   final feedViewModel = GetIt.instance<FeedViewModel>();
+  final authViewModel = GetIt.instance<AuthViewModel>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,47 +36,11 @@ class MetadataScreen extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           FormBuilderTextField(
-                            name: 'id',
-                            decoration: InputDecoration(
-                              labelText: 'ID',
-                            ),
-                          ),
-                          FormBuilderTextField(
-                            name: 'user',
-                            decoration: InputDecoration(
-                              labelText: 'User',
-                            ),
-                          ),
-                          FormBuilderTextField(
-                            name: 'user_pic',
-                            decoration: InputDecoration(
-                              labelText: 'User Picture',
-                            ),
-                          ),
-                          FormBuilderTextField(
                             name: 'video_title',
                             decoration: InputDecoration(
                               labelText: 'Video Title',
                             ),
                           ),
-                          FormBuilderTextField(
-                            name: 'song_name',
-                            decoration: InputDecoration(
-                              labelText: 'Song Name',
-                            ),
-                          ),
-                          FormBuilderTextField(
-                            name: 'likes',
-                            decoration: InputDecoration(
-                              labelText: 'Likes',
-                            ),
-                          ),
-                          FormBuilderTextField(
-                            name: 'comments',
-                            decoration: InputDecoration(
-                              labelText: 'Comments',
-                            ),
-                          )
                         ],
                       ),
                     ),
@@ -95,6 +62,14 @@ class MetadataScreen extends StatelessWidget {
                               // }
                               Map<String, dynamic> data =
                                   Map.from(_formKey.currentState!.value);
+                              data["id"] = "0";
+                              data["user"] =
+                                  authViewModel.getCurrentUser()?.displayName ??
+                                      authViewModel.getCurrentUser()?.email;
+                              data["user_pic"] = "";
+                              data["song_name"] = "Song name";
+                              data["likes"] = "0";
+                              data["comments"] = "0";
                               data["url"] = path;
                               feedViewModel
                                   .uploadVideo(Video.fromJson(data))

@@ -47,4 +47,8 @@ class AuthViewModel extends BaseViewModel {
       return e.message;
     }
   }
+
+  User? getCurrentUser() {
+    return _firebaseAuth.currentUser;
+  }
 }

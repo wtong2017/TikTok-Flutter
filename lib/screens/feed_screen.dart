@@ -24,10 +24,9 @@ class _FeedScreenState extends State<FeedScreen> {
   final feedViewModel = GetIt.instance<FeedViewModel>();
   @override
   void initState() {
+    super.initState();
     feedViewModel.loadVideo(0);
     feedViewModel.loadVideo(1);
-
-    super.initState();
   }
 
   @override
@@ -518,6 +517,7 @@ class _FeedScreenState extends State<FeedScreen> {
         video.controller != null
             ? GestureDetector(
                 onTap: () {
+                  print("tap");
                   if (video.controller!.value.isPlaying) {
                     video.controller?.pause();
                   } else {
@@ -537,7 +537,10 @@ class _FeedScreenState extends State<FeedScreen> {
             : Container(
                 color: Colors.black,
                 child: Center(
-                  child: Text("Loading"),
+                  child: Text(
+                    "Loading",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
         Column(
