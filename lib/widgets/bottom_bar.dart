@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:tiktok_flutter/screens/create_screen.dart';
 import 'package:tiktok_flutter/screens/feed_viewmodel.dart';
 import 'package:tiktok_flutter/utils/tik_tok_icons_icons.dart';
 import 'package:get_it/get_it.dart';
@@ -64,7 +65,15 @@ class BottomBar extends StatelessWidget {
               SizedBox(
                 width: 15,
               ),
-              customCreateIcon,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CreateScreen()),
+                  );
+                },
+                child: customCreateIcon,
+              ),
               SizedBox(
                 width: 15,
               ),
@@ -87,7 +96,7 @@ class BottomBar extends StatelessWidget {
         },
         child: Container(
           height: 45,
-          width: 80,
+          width: 70,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

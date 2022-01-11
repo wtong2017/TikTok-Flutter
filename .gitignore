@@ -45,3 +45,4 @@ app.*.map.json
 #Google Services
 google-services.json
 GoogleService-Info.plist
+firebase_options.dart

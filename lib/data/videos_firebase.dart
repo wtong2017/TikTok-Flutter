@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:tiktok_flutter/data/demo_data.dart';
 import 'package:tiktok_flutter/data/video.dart';
+import 'package:tiktok_flutter/firebase_options.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
 
 class VideosAPI {
   List<Video> listVideos = <Video>[];
@@ -37,6 +43,24 @@ class VideosAPI {
   Future<Null> addDemoData() async {
     for (var video in data) {
       await FirebaseFirestore.instance.collection("Videos").add(video);
+    }
+  }
+
+  Future<bool> addData(Video video) async {
+    File file = File(video.url);
+    final fileName = basename(video.url);
+
+    try {
+      UploadTask uploadTask =
+          FirebaseStorage.instance.ref('uploads/$fileName').putFile(file);
+
+      String url = await (await uploadTask).ref.getDownloadURL();
+      video.url = url;
+      await FirebaseFirestore.instance.collection("Videos").add(video.toJson());
+      return true;
+    } on FirebaseException catch (e) {
+      // e.g, e.code == 'canceled'
+      return false;
     }
   }
 }

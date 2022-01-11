@@ -21,7 +21,6 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
-  final locator = GetIt.instance;
   final feedViewModel = GetIt.instance<FeedViewModel>();
   @override
   void initState() {

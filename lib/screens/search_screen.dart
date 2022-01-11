@@ -21,24 +21,28 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      width: 350,
-                      height: 40,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(Icons.search),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Search")
-                        ],
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        height: 40,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.search),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("Search")
+                          ],
+                        ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 5,
                     ),
                     Icon(Icons.qr_code)
                   ],

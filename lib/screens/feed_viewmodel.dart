@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:tiktok_flutter/data/video.dart';
 import 'package:tiktok_flutter/data/videos_firebase.dart';
 import 'package:stacked/stacked.dart';
 import 'package:video_player/video_player.dart';
@@ -47,5 +48,9 @@ class FeedViewModel extends BaseViewModel {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     }
     notifyListeners();
+  }
+
+  Future<bool> uploadVideo(Video video) {
+    return videoSource!.addData(video);
   }
 }
