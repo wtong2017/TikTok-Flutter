@@ -534,13 +534,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 )),
               )
             : Container(
-                color: Colors.black,
-                child: Center(
-                  child: Text(
-                    "Loading",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                child: Center(child: CircularProgressIndicator()),
               ),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,

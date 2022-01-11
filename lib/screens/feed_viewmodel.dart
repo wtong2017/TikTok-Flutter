@@ -36,9 +36,9 @@ class FeedViewModel extends BaseViewModel {
     print('loading $index');
     await videoSource!.initDone;
     if (videoSource!.listVideos.length > index) {
-      print('loading controller');
+      // print('loading controller');
       await videoSource!.listVideos[index].loadController();
-      print('loading controller done');
+      // print('loading controller done');
       videoSource!.listVideos[index].controller?.play();
       notifyListeners();
     }

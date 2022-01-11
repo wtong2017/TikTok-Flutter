@@ -17,7 +17,22 @@ class VideosAPI {
   }
 
   Future load() async {
-    listVideos = await getVideoList();
+    // listVideos = await getVideoList();
+    // print(listVideos);
+
+    Stream stream = FirebaseFirestore.instance
+        .collection("Videos")
+        .snapshots()
+        .asBroadcastStream();
+    stream.listen((snapshot) {
+      if (listVideos.isNotEmpty) return;
+      print("update");
+      listVideos = [];
+      snapshot.docs.forEach((element) {
+        listVideos.add(Video.fromJson(element.data()));
+      });
+    });
+    await stream.first;
     print(listVideos);
   }
 
