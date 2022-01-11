@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:tiktok_flutter/screens/auth_viewmodel.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
+  final authViewModel = GetIt.instance<AuthViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,12 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     "Salvador Valverde",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      authViewModel.signOut();
+                    },
+                    child: Text("Sign out"),
                   ),
                   Icon(Icons.more_horiz)
                 ],
